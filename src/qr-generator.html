@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code Generator - 4 Seasons Business Directory</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen flex items-center justify-center p-4">
+  <div class="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md">
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-gray-800 mb-2">4 Seasons Directory</h1>
+      <p class="text-gray-600">QR Code Generator</p>
+    </div>
+    
+    <div class="space-y-6">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+          Landing Page URL:
+        </label>
+        <input 
+          type="url" 
+          id="urlInput" 
+          value="./landing.html"
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          placeholder="Enter the URL for your landing page"
+        >
+      </div>
+      
+      <button 
+        onclick="generateQR()" 
+        class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold py-3 px-6 rounded-lg hover:from-blue-600 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg"
+      >
+        Generate QR Code
+      </button>
+      
+      <div id="qrContainer" class="hidden">
+        <div class="text-center">
+          <h3 class="text-lg font-semibold text-gray-800 mb-4">Your QR Code:</h3>
+          <div class="flex justify-center">
+            <canvas id="qrcode" class="border border-gray-200 rounded-lg shadow-md"></canvas>
+          </div>
+          <p class="text-sm text-gray-600 mt-4">
+            Scan this QR code to access the 4 Seasons Business Directory
+          </p>
+          <div class="mt-4 space-y-2">
+            <button 
+              onclick="downloadQR()" 
+              class="w-full bg-green-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-600 transition-colors duration-200"
+            >
+              Download QR Code
+            </button>
+            <button 
+              onclick="printQR()" 
+              class="w-full bg-gray-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-gray-600 transition-colors duration-200"
+            >
+              Print QR Code
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function generateQR() {
+      const url = document.getElementById('urlInput').value;
+      if (!url) {
+        alert('Please enter a URL');
+        return;
+      }
+      
+      const canvas = document.getElementById('qrcode');
+      const container = document.getElementById('qrContainer');
+      
+      // Clear previous QR code
+      const context = canvas.getContext('2d');
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Generate new QR code
+      QRCode.toCanvas(canvas, url, {
+        width: 256,
+        height: 256,
+        color: {
+          dark: '#000000',
+          light: '#FFFFFF'
+        },
+        margin: 2,
+        errorCorrectionLevel: 'M'
+      }, function (error) {
+        if (error) {
+          console.error(error);
+          alert('Error generating QR code');
+          return;
+        }
+        container.classList.remove('hidden');
+      });
+    }
+    
+    function downloadQR() {
+      const canvas = document.getElementById('qrcode');
+      const link = document.createElement('a');
+      link.download = '4-seasons-directory-qr.png';
+      link.href = canvas.toDataURL();
+      link.click();
+    }
+    
+    function printQR() {
+      const canvas = document.getElementById('qrcode');
+      const printWindow = window.open('', '_blank');
+      printWindow.document.write(`
+        <html>
+          <head>
+            <title>4 Seasons Directory QR Code</title>
+            <style>
+              body { 
+                display: flex; 
+                justify-content: center; 
+                align-items: center; 
+                min-height: 100vh; 
+                margin: 0; 
+                font-family: Arial, sans-serif;
+                flex-direction: column;
+              }
+              .print-container {
+                text-align: center;
+              }
+              h1 { 
+                margin-bottom: 20px; 
+                color: #333;
+              }
+              img { 
+                border: 2px solid #ddd; 
+                border-radius: 8px;
+              }
+            </style>
+          </head>
+          <body>
+            <div class="print-container">
+              <h1>4 Seasons Business Directory</h1>
+              <img src="${canvas.toDataURL()}" alt="QR Code">
+              <p>Scan to access the business directory</p>
+            </div>
+          </body>
+        </html>
+      `);
+      printWindow.document.close();
+      printWindow.print();
+    }
+    
+    // Generate QR code on page load with default URL
+    window.addEventListener('load', function() {
+      generateQR();
+    });
+  </script>
+</body>
+</html>
