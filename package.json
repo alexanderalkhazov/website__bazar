@@ -1,0 +1,16 @@
+{
+  "name": "qr-bazar-project",
+  "version": "1.0.0",
+  "description": "QR code generator for Bazar landing page",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "npx serve -s src -l 3000",
+    "build": "echo 'Static site - no build needed'"
+  },
+  "dependencies": {
+    "serve": "^14.2.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
