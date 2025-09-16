@@ -168,16 +168,16 @@
         <circle cx="200" cy="200" r="190" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
         
         <!-- Top Left Quadrant - Casino -->
-        <path d="M 200 200 L 200 50 A 150 150 0 0 0 50 200 Z" fill="#dc3545" class="clickable-quadrant" onclick="goTo('Danny Alelin', 'Casino')"/>
+        <path d="M 200 200 L 200 50 A 150 150 0 0 0 50 200 Z" fill="#ffb3ba" class="clickable-quadrant" onclick="goTo('Danny Alelin', 'Casino')"/>
         
         <!-- Top Right Quadrant - UTM Gym -->
-        <path d="M 200 200 L 350 200 A 150 150 0 0 0 200 50 Z" fill="#6610f2" class="clickable-quadrant" onclick="goTo('Binyamin Fisher', 'UTM Gym')"/>
+        <path d="M 200 200 L 350 200 A 150 150 0 0 0 200 50 Z" fill="#bae1ff" class="clickable-quadrant" onclick="goTo('Binyamin Fisher', 'UTM Gym')"/>
         
         <!-- Bottom Right Quadrant - Avocado Restaurant -->
-        <path d="M 200 200 L 200 350 A 150 150 0 0 0 350 200 Z" fill="#198754" class="clickable-quadrant" onclick="goTo('Dor Shalom', 'Avocado Restaurant')"/>
+        <path d="M 200 200 L 200 350 A 150 150 0 0 0 350 200 Z" fill="#baffc9" class="clickable-quadrant" onclick="goTo('Dor Shalom', 'Avocado Restaurant')"/>
         
         <!-- Bottom Left Quadrant - Cashback Suites -->
-        <path d="M 200 200 L 50 200 A 150 150 0 0 0 200 350 Z" fill="#0dcaf0" class="clickable-quadrant" onclick="goTo('Alex Alhazov', 'Cashback Suites')"/>
+        <path d="M 200 200 L 50 200 A 150 150 0 0 0 200 350 Z" fill="#ffffba" class="clickable-quadrant" onclick="goTo('Alex Alhazov', 'Cashback Suites')"/>
         
         <!-- Center circle -->
         <circle cx="200" cy="200" r="50" fill="white" stroke="#dee2e6" stroke-width="2"/>
@@ -188,30 +188,30 @@
         
         <!-- Casino Icon & Text -->
         <g class="pointer-events-none">
-          <text x="125" y="125" text-anchor="middle" class="text-sm font-bold fill-white">🎰</text>
-          <text x="125" y="140" text-anchor="middle" class="text-xs fill-white">Casino</text>
-          <text x="125" y="155" text-anchor="middle" class="text-xs fill-white">Danny Alelin</text>
+          <text x="125" y="125" text-anchor="middle" class="text-sm font-bold fill-gray-700">🎰</text>
+          <text x="125" y="140" text-anchor="middle" class="text-xs fill-gray-700">Casino</text>
+          <text x="125" y="155" text-anchor="middle" class="text-xs fill-gray-700">Danny Alelin</text>
         </g>
         
         <!-- UTM Gym Icon & Text -->
         <g class="pointer-events-none">
-          <text x="275" y="125" text-anchor="middle" class="text-sm font-bold fill-white">💪</text>
-          <text x="275" y="140" text-anchor="middle" class="text-xs fill-white">UTM Gym</text>
-          <text x="275" y="155" text-anchor="middle" class="text-xs fill-white">Binyamin Fisher</text>
+          <text x="275" y="125" text-anchor="middle" class="text-sm font-bold fill-gray-700">💪</text>
+          <text x="275" y="140" text-anchor="middle" class="text-xs fill-gray-700">UTM Gym</text>
+          <text x="275" y="155" text-anchor="middle" class="text-xs fill-gray-700">Binyamin Fisher</text>
         </g>
         
         <!-- Avocado Restaurant Icon & Text -->
         <g class="pointer-events-none">
-          <text x="275" y="275" text-anchor="middle" class="text-sm font-bold fill-white">🥑</text>
-          <text x="275" y="290" text-anchor="middle" class="text-xs fill-white">Avocado</text>
-          <text x="275" y="305" text-anchor="middle" class="text-xs fill-white">Dor Shalom</text>
+          <text x="275" y="275" text-anchor="middle" class="text-sm font-bold fill-gray-700">🥑</text>
+          <text x="275" y="290" text-anchor="middle" class="text-xs fill-gray-700">Avocado</text>
+          <text x="275" y="305" text-anchor="middle" class="text-xs fill-gray-700">Dor Shalom</text>
         </g>
         
         <!-- Cashback Suites Icon & Text -->
         <g class="pointer-events-none">
-          <text x="125" y="275" text-anchor="middle" class="text-sm font-bold fill-white">🏨</text>
-          <text x="125" y="290" text-anchor="middle" class="text-xs fill-white">Cashback Suites</text>
-          <text x="125" y="305" text-anchor="middle" class="text-xs fill-white">Alex Alhazov</text>
+          <text x="125" y="275" text-anchor="middle" class="text-sm font-bold fill-gray-700">🏨</text>
+          <text x="125" y="290" text-anchor="middle" class="text-xs fill-gray-700">Cashback Suites</text>
+          <text x="125" y="305" text-anchor="middle" class="text-xs fill-gray-700">Alex Alhazov</text>
         </g>
       </svg>
     </div>
@@ -225,7 +225,6 @@
       <div id="modalTitle" class="modal-title">Contact Lead</div>
       <div id="modalSubtitle" class="modal-subtitle">Ready to connect?</div>
       <div class="modal-buttons">
-        <button class="btn btn-primary" onclick="contactLead()">Contact Now</button>
         <button class="btn btn-secondary" onclick="closeModal()">Close</button>
       </div>
     </div>
@@ -260,12 +259,6 @@
 
     function closeModal() {
       document.getElementById('contactModal').classList.remove('active');
-    }
-
-    function contactLead() {
-      // You can customize this action - redirect to phone, email, etc.
-      alert(`Contacting ${currentLead} from ${currentBusiness}!\n\nThis would typically:\n• Open phone dialer\n• Send email\n• Open WhatsApp\n• Redirect to contact form`);
-      closeModal();
     }
 
     // Close modal when clicking outside
