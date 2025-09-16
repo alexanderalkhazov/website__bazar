@@ -6,102 +6,122 @@
   <title>4 Seasons Business Directory</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
-    .circle-menu {
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
+    .svg-container {
+      width: 350px;
+      height: 350px;
       position: relative;
-      overflow: hidden;
       cursor: pointer;
     }
     
-    .quadrant {
+    .clickable-quadrant {
       position: absolute;
-      width: 50%;
-      height: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .clickable-quadrant:hover {
+      filter: brightness(1.2);
+      transform: scale(1.05);
+    }
+    
+    .quadrant-overlay {
+      position: absolute;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
       font-weight: bold;
-      transition: all 0.3s ease;
       text-align: center;
-      padding: 10px;
-      box-sizing: border-box;
-    }
-    
-    .quadrant:hover {
-      transform: scale(1.1);
-      z-index: 10;
-    }
-    
-    .casino {
-      top: 0;
-      left: 0;
-      background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-      border-radius: 100% 0 0 0;
-    }
-    
-    .gym {
-      top: 0;
-      right: 0;
-      background: linear-gradient(225deg, #4834d4, #686de0);
-      border-radius: 0 100% 0 0;
-    }
-    
-    .suites {
-      bottom: 0;
-      left: 0;
-      background: linear-gradient(45deg, #00d2d3, #54a0ff);
-      border-radius: 0 0 0 100%;
-    }
-    
-    .restaurant {
-      bottom: 0;
-      right: 0;
-      background: linear-gradient(315deg, #5f27cd, #341f97);
-      border-radius: 0 0 100% 0;
-    }
-    
-    .center-logo {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 80px;
-      height: 80px;
-      background: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       font-size: 12px;
-      font-weight: bold;
-      color: #333;
-      z-index: 20;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+      pointer-events: none;
+    }
+    
+    .casino-overlay {
+      top: 25%;
+      left: 25%;
+      width: 25%;
+      height: 25%;
+    }
+    
+    .gym-overlay {
+      top: 25%;
+      right: 25%;
+      width: 25%;
+      height: 25%;
+    }
+    
+    .suites-overlay {
+      bottom: 25%;
+      left: 25%;
+      width: 25%;
+      height: 25%;
+    }
+    
+    .restaurant-overlay {
+      bottom: 25%;
+      right: 25%;
+      width: 25%;
+      height: 25%;
     }
   </style>
 </head>
 <body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
-  <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md text-center">
+  <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg text-center">
     <h1 class="text-2xl font-bold mb-6">4 Seasons Business Directory</h1>
-    <div class="circle-menu mx-auto">
-      <div class="quadrant casino" onclick="goTo('Danny Alelin', 'Casino')">
-        <span>Casino<br><small>Danny Alelin</small></span>
-      </div>
-      <div class="quadrant gym" onclick="goTo('Binyamin Fisher', 'UTM Gym')">
-        <span>UTM Gym<br><small>Binyamin Fisher</small></span>
-      </div>
-      <div class="quadrant suites" onclick="goTo('Alex Alhazov', 'Cashback Suites')">
-        <span>Cashback<br>Suites<br><small>Alex Alhazov</small></span>
-      </div>
-      <div class="quadrant restaurant" onclick="goTo('Dor Shalom', 'Avocado Restaurant')">
-        <span>Avocado<br>Restaurant<br><small>Dor Shalom</small></span>
-      </div>
-      <div class="center-logo">
-        4 SEASONS
-      </div>
+    <div class="svg-container mx-auto">
+      <!-- 4 Seasons SVG with clickable quadrants -->
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+        <!-- Background circle -->
+        <circle cx="200" cy="200" r="190" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+        
+        <!-- Top Left Quadrant - Casino -->
+        <path d="M 200 200 L 200 50 A 150 150 0 0 0 50 200 Z" fill="#dc3545" class="clickable-quadrant" onclick="goTo('Danny Alelin', 'Casino')"/>
+        
+        <!-- Top Right Quadrant - UTM Gym -->
+        <path d="M 200 200 L 350 200 A 150 150 0 0 0 200 50 Z" fill="#6610f2" class="clickable-quadrant" onclick="goTo('Binyamin Fisher', 'UTM Gym')"/>
+        
+        <!-- Bottom Right Quadrant - Avocado Restaurant -->
+        <path d="M 200 200 L 200 350 A 150 150 0 0 0 350 200 Z" fill="#198754" class="clickable-quadrant" onclick="goTo('Dor Shalom', 'Avocado Restaurant')"/>
+        
+        <!-- Bottom Left Quadrant - Cashback Suites -->
+        <path d="M 200 200 L 50 200 A 150 150 0 0 0 200 350 Z" fill="#0dcaf0" class="clickable-quadrant" onclick="goTo('Alex Alhazov', 'Cashback Suites')"/>
+        
+        <!-- Center circle -->
+        <circle cx="200" cy="200" r="50" fill="white" stroke="#dee2e6" stroke-width="2"/>
+        
+        <!-- Center text -->
+        <text x="200" y="195" text-anchor="middle" class="text-sm font-bold fill-gray-800">4 SEASONS</text>
+        <text x="200" y="210" text-anchor="middle" class="text-xs fill-gray-600">DIRECTORY</text>
+        
+        <!-- Casino Icon & Text -->
+        <g class="pointer-events-none">
+          <text x="125" y="125" text-anchor="middle" class="text-sm font-bold fill-white">🎰</text>
+          <text x="125" y="140" text-anchor="middle" class="text-xs fill-white">Casino</text>
+          <text x="125" y="155" text-anchor="middle" class="text-xs fill-white">Danny Alelin</text>
+        </g>
+        
+        <!-- UTM Gym Icon & Text -->
+        <g class="pointer-events-none">
+          <text x="275" y="125" text-anchor="middle" class="text-sm font-bold fill-white">💪</text>
+          <text x="275" y="140" text-anchor="middle" class="text-xs fill-white">UTM Gym</text>
+          <text x="275" y="155" text-anchor="middle" class="text-xs fill-white">Binyamin Fisher</text>
+        </g>
+        
+        <!-- Avocado Restaurant Icon & Text -->
+        <g class="pointer-events-none">
+          <text x="275" y="275" text-anchor="middle" class="text-sm font-bold fill-white">🥑</text>
+          <text x="275" y="290" text-anchor="middle" class="text-xs fill-white">Avocado</text>
+          <text x="275" y="305" text-anchor="middle" class="text-xs fill-white">Dor Shalom</text>
+        </g>
+        
+        <!-- Cashback Suites Icon & Text -->
+        <g class="pointer-events-none">
+          <text x="125" y="275" text-anchor="middle" class="text-sm font-bold fill-white">🏨</text>
+          <text x="125" y="290" text-anchor="middle" class="text-xs fill-white">Cashback Suites</text>
+          <text x="125" y="305" text-anchor="middle" class="text-xs fill-white">Alex Alhazov</text>
+        </g>
+      </svg>
     </div>
     <p class="mt-4 text-sm text-gray-600">Click on any section to contact the lead</p>
   </div>
